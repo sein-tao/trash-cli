@@ -188,12 +188,14 @@ class RestoreCmd:
             if index == "" :
                 self.println("Exiting")
             else :
-                index = int(index)
-                try:
-                    trashed_files[index].restore()
-                except IOError as e:
-                    self.printerr(e)
-                    self.exit(1)
+                #index = int(index)
+                files = (trashed_files[int(i)] for i in index.split())
+                for file in files:
+                    try:
+                        file.restore()
+                    except IOError as e:
+                        self.printerr(e)
+                        self.exit(1)
     def for_all_trashed_file_in_dir(self, action, dir):
         def is_trashed_from_curdir(trashedfile):
             return trashedfile.path.startswith(dir + os.path.sep)
