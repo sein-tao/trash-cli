@@ -1,9 +1,9 @@
 # Copyright (C) 2009-2011 Andrea Francia Trivolzio(PV) Italy
 
 def mount_points():
-    try:
-	return list(mount_points_from_getmnt())
-    except AttributeError:
+    # try:
+	#     return list(mount_points_from_getmnt())
+    # except AttributeError:
         return mount_points_from_df()
 
 def mount_points_from_getmnt():
